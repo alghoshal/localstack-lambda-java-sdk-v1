@@ -74,8 +74,8 @@ public class LambdaService {
 	}
 
 	static void createFunction(String zipJarPath) throws IOException {
-		FunctionCode code = new FunctionCode();
 		try (FileChannel fchan = (FileChannel) Files.newByteChannel(Paths.get(zipJarPath))) {
+			FunctionCode code = new FunctionCode();
 			code.setZipFile(fchan.map(FileChannel.MapMode.READ_ONLY, 0, fchan.size()));
 
 			CreateFunctionRequest funcRequest = new CreateFunctionRequest()
